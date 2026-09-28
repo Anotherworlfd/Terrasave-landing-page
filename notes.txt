@@ -1,0 +1,53 @@
+I have loaded tasteskill v2 (experimental) as my only source of design rules. 
+
+Act as an expert UI/UX Designer and Frontend Developer. Build a high-converting, single-page B2B landing page for a Green Energy Consulting and Audit Services firm. The design must be highly polished, elegant, and minimalist, closely following top-tier Dribbble UI trends.
+based only @prd.md
+
+### 1. Design System & Styling
+- **Framework:** Use React with Tailwind CSS (and Framer Motion or pure CSS for smooth animations).
+- **Color Palette:** 
+  - Primary: Forest Green / Emerald (e.g., #059669 or #047857)
+  - Secondary/Accent: Sage / Mint Green (e.g., #A7F3D0)
+  - Backgrounds: Crisp White (#FFFFFF) and Off-White/Light Gray (#F9FAFB) for section transitions.
+  - Text: Deep Charcoal (#1F2937 or #111827) for readability—do not use pure black.
+- **Typography:** 
+  - Headings: Use a geometric, bold sans-serif like 'Syne', 'Space Grotesk', or 'Montserrat'.
+  - Body: Use a clean, legible sans-serif like 'Inter' or 'Plus Jakarta Sans'.
+- **UI Elements:** Implement ample whitespace, floating UI cards with soft drop shadows (`shadow-lg` to `shadow-xl`), and smooth hover states (scale up slightly, subtle glow or border color change).
+
+### 2. Page Structure & Components
+
+**Section 1: Hero (Above the Fold)**
+- Layout: Two-column on desktop. Left side text, right side a dynamic composition of overlapping floating UI cards or a high-quality modern building/solar panel image placeholder.
+- Headline: "Transforming Sustainable Energy for Your Enterprise" (Bold, large, engaging).
+- Sub-headline: "Expert green energy consulting and comprehensive audits to optimize efficiency and reduce operational costs at an enterprise scale." (Charcoal, medium text).
+- CTA: Primary solid Forest Green button saying "Schedule a Free Consultation". Include a subtle hover effect (e.g., bg darkens, translates up by 2px).
+
+**Section 2: Social Proof (Logo Marquee)**
+- Add a horizontal marquee or a simple row of 4-5 grayscale placeholder company logos. 
+- Heading above it: "Trusted by Industry Leaders" in small, uppercase text with wide tracking.
+
+**Section 3: Our Services (Cards)**
+- Layout: 2 or 3-column grid of floating UI cards.
+- Card 1 (Energy Consulting): Include a minimalist line-art leaf/chart icon. Text focuses on strategic planning, ROI analysis, and ESG roadmaps.
+- Card 2 (Energy Audits): Include a minimalist magnifying glass icon. Text focuses on site assessments, compliance, and waste reduction.
+- Interaction: Cards should have a soft shadow by default and elevate (`-translate-y-2` and deeper shadow) on hover.
+
+**Section 4: Why Choose Us**
+- Layout: Modern asymmetric grid.
+- Content: Highlight 3 points with small icons: Cost Reduction, Regulatory Compliance, and Corporate Responsibility. Use alternating background colors (White to Off-White) to distinguish this section.
+
+**Section 5: Lead Generation Form**
+- Layout: Centered white card over a very faint Sage green background.
+- Design: Clean form with minimalist inputs (bottom borders only / underline style, or very subtly rounded borders). 
+- Fields: Full Name, Company Name, Work Email, Company Size (Dropdown), Service of Interest (Dropdown).
+- CTA: Full-width solid green button: "Submit Request".
+
+**Section 6: Minimalist Footer**
+- Include placeholder logo, Copyright, Phone, Email, and links to Privacy Policy and LinkedIn.
+- Style: Very clean, dark background (Charcoal) with white/light gray text, or off-white background with charcoal text.
+
+### 3. Technical Constraints
+- Ensure the layout is strictly mobile-first and 100% responsive across mobile, tablet, and desktop.
+- Write clean, modular, and accessible code with semantic HTML tags.
+- Add smooth scrolling for anchor links if any are used.

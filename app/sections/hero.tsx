@@ -1,0 +1,76 @@
+"use client";
+
+import { motion } from "motion/react";
+import Header from "./header";
+import Button from "@/components/ui/button";
+import { SplitText } from "@/components/ui/split-text";
+
+const BACKGROUND_IMAGE =
+  "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?q=80&w=2500&auto=format&fit=crop";
+
+export default function Hero() {
+  return (
+    <section
+      id="top"
+      className="relative flex min-h-[100dvh] flex-col justify-between overflow-hidden"
+    >
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url('${BACKGROUND_IMAGE}')` }}
+        aria-hidden="true"
+      />
+
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+
+      {/* Extra scrim behind the bottom text row */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/50 to-transparent"
+        aria-hidden="true"
+      />
+
+      {/* Transparent overlay nav */}
+      <Header />
+
+      {/* Center: massive wordmark */}
+      <div className="relative z-10 flex flex-1 items-center justify-center px-4 pt-24">
+        <h1 className="text-center font-syne text-5xl font-black leading-none tracking-tighter text-white sm:text-7xl md:text-8xl lg:text-[10rem] xl:text-[12rem]">
+          <SplitText text="TerraSave" />
+        </h1>
+      </div>
+
+      {/* Bottom row: paragraph left, CTA right */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-10 md:flex-row md:items-end md:justify-between md:px-8 md:pb-14 lg:px-12 lg:pb-16">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-md text-base leading-relaxed text-white md:text-lg"
+        >
+          Commercial green energy consulting and B2B energy audits that cut
+          costs and keep enterprises ahead of regulation.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          className="flex-shrink-0"
+        >
+          <Button
+            variant="primary"
+            className="px-7 py-3 text-sm md:px-8 md:py-4 md:text-base"
+            onClick={() =>
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            Get Started Now
+          </Button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
