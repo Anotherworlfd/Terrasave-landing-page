@@ -10,7 +10,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-body)", "ui-sans-serif", "system-ui", "sans-serif"],
-        heading: ["var(--font-syne)", "ui-sans-serif", "system-ui", "sans-serif"],
+        syne: ["var(--font-syne)", "ui-sans-serif", "system-ui", "sans-serif"],
+        heading: ["var(--font-heading)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
     },
   },

@@ -32,7 +32,7 @@ export default function Capabilities() {
           <TextReveal className="text-xs font-medium uppercase tracking-widest text-gray-400">
             Our Services
           </TextReveal>
-          <TextReveal className="mx-auto mt-3 max-w-lg font-syne text-3xl font-bold leading-snug text-gray-800 md:text-4xl" delay={0.08}>
+          <TextReveal className="mx-auto mt-3 max-w-lg font-heading text-3xl font-bold leading-snug text-gray-800 md:text-4xl" delay={0.08}>
             Commercial green energy services
           </TextReveal>
         </div>
@@ -55,7 +55,7 @@ export default function Capabilities() {
                   loading="lazy"
                 />
               </div>
-              <h3 className="mt-5 font-syne text-lg font-bold text-gray-800">
+              <h3 className="mt-5 font-heading text-lg font-bold text-gray-800">
                 {c.title}
               </h3>
             </motion.article>

@@ -48,7 +48,7 @@ export default function Header() {
           {/* Logo */}
           <a
             href="#top"
-            className={`font-syne text-xl font-bold tracking-tight transition-colors duration-500 ease-out md:text-2xl ${
+            className={`font-heading text-xl font-bold tracking-tight transition-colors duration-500 ease-out md:text-2xl ${
               scrolled ? "text-gray-900" : "text-white"
             }`}
           >

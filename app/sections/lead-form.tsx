@@ -46,7 +46,7 @@ export default function LeadForm() {
                   />
                 </svg>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 font-syne">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 font-heading">
                 Request Received
               </h2>
               <p className="text-gray-700">
@@ -73,7 +73,7 @@ export default function LeadForm() {
           transition={{ duration: 0.6 }}
         >
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 font-syne">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 font-heading">
               Schedule Consultation
             </h2>
             <p className="text-gray-600 mb-8">

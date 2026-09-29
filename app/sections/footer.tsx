@@ -61,7 +61,7 @@ export default function Footer() {
         {/* Top: Logo + Social */}
         <div className="mb-12 flex flex-col justify-between gap-8 md:flex-row md:items-start">
           <div>
-            <h2 className="font-syne text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="font-heading text-3xl font-bold tracking-tight md:text-4xl">
               TerraSave
             </h2>
             <p className="mt-3 max-w-sm text-sm text-gray-400">

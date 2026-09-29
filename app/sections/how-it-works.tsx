@@ -44,7 +44,7 @@ export default function HowItWorks() {
           <TextReveal className="text-xs font-medium uppercase tracking-widest text-gray-400">
             Process
           </TextReveal>
-          <TextReveal className="mt-3 font-syne text-3xl font-bold leading-snug text-gray-800 md:text-4xl" delay={0.08}>
+          <TextReveal className="mt-3 font-heading text-3xl font-bold leading-snug text-gray-800 md:text-4xl" delay={0.08}>
             How we deliver clean energy results
           </TextReveal>
         </div>
@@ -59,10 +59,10 @@ export default function HowItWorks() {
               transition={{ delay: i * 0.08, duration: 0.6 }}
               className="border-t border-gray-200 py-8 md:py-10"
             >
-              <span className="font-syne text-xs font-bold tracking-widest text-emerald-600">
+              <span className="font-heading text-xs font-bold tracking-widest text-emerald-600">
                 {step.num}
               </span>
-              <h3 className="mt-3 font-syne text-lg font-bold text-gray-800">
+              <h3 className="mt-3 font-heading text-lg font-bold text-gray-800">
                 {step.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-gray-500">

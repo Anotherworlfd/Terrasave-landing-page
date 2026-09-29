@@ -20,7 +20,7 @@ export default function About() {
           <TextReveal className="text-xs font-medium uppercase tracking-widest text-gray-400">
             About Us
           </TextReveal>
-          <TextReveal className="mt-4 font-syne text-3xl font-bold leading-snug text-gray-800 md:text-4xl" delay={0.08}>
+          <TextReveal className="mt-4 font-heading text-3xl font-bold leading-snug text-gray-800 md:text-4xl" delay={0.08}>
             We believe that clean energy is the key to sustainability
           </TextReveal>
           <FadeUp delay={0.18} className="mt-5">
@@ -44,7 +44,7 @@ export default function About() {
               transition={{ delay: i * 0.1, duration: 0.6 }}
               className="text-center"
             >
-              <p className="font-syne text-4xl font-bold text-gray-800 md:text-5xl">
+              <p className="font-heading text-4xl font-bold text-gray-800 md:text-5xl">
                 {s.value}
               </p>
               <p className="mt-2 text-sm text-gray-500">{s.label}</p>
