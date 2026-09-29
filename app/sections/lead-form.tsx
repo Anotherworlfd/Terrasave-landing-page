@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import Input from "@/components/ui/input";
 import Select from "@/components/ui/select";
 import Button from "@/components/ui/button";
+import RollingText from "@/components/ui/rolling-text";
 
 const BACKGROUND_IMAGE =
   "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=2070&auto=format&fit=crop";
@@ -116,8 +117,8 @@ export default function LeadForm() {
                     type="text"
                     required
                     placeholder="John Doe"
-                    className="bg-transparent border-white/30 text-white placeholder:text-gray-400 focus:border-emerald-400"
-                    labelClassName="text-gray-200"
+                    className="bg-transparent border-white/30 text-white placeholder:text-white/60 focus:border-emerald-400"
+                    labelClassName="text-white"
                   />
                   <Input
                     label="Company Name"
@@ -125,8 +126,8 @@ export default function LeadForm() {
                     type="text"
                     required
                     placeholder="Company Inc."
-                    className="bg-transparent border-white/30 text-white placeholder:text-gray-400 focus:border-emerald-400"
-                    labelClassName="text-gray-200"
+                    className="bg-transparent border-white/30 text-white placeholder:text-white/60 focus:border-emerald-400"
+                    labelClassName="text-white"
                   />
                   <Input
                     label="Work Email"
@@ -134,8 +135,8 @@ export default function LeadForm() {
                     type="email"
                     required
                     placeholder="john@company.com"
-                    className="bg-transparent border-white/30 text-white placeholder:text-gray-400 focus:border-emerald-400"
-                    labelClassName="text-gray-200"
+                    className="bg-transparent border-white/30 text-white placeholder:text-white/60 focus:border-emerald-400"
+                    labelClassName="text-white"
                   />
                   <Select
                     label="Company Size"
@@ -148,7 +149,7 @@ export default function LeadForm() {
                       { value: "5000+", label: "5000+ employees" },
                     ]}
                     className="bg-transparent border-white/30 text-white focus:border-emerald-400 [&>option]:text-gray-900"
-                    labelClassName="text-gray-200"
+                    labelClassName="text-white"
                   />
                   <Select
                     label="Service of Interest"
@@ -160,7 +161,7 @@ export default function LeadForm() {
                       { value: "both", label: "Both services" },
                     ]}
                     className="bg-transparent border-white/30 text-white focus:border-emerald-400 [&>option]:text-gray-900"
-                    labelClassName="text-gray-200"
+                    labelClassName="text-white"
                   />
                 </div>
 
@@ -170,7 +171,9 @@ export default function LeadForm() {
                   className="w-full py-4 text-base font-medium"
                   disabled={loading}
                 >
-                  {loading ? "Processing..." : "Submit Request"}
+                  <RollingText>
+                    {loading ? "Processing..." : "Submit Request"}
+                  </RollingText>
                 </Button>
               </form>
             </div>

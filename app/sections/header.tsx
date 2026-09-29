@@ -32,7 +32,7 @@ export default function Header() {
         aria-hidden="true"
         className={`pointer-events-none absolute inset-0 -z-10 transition-all duration-500 ease-out ${
           scrolled
-            ? "border-b border-gray-200 bg-white/90 opacity-100 shadow-sm backdrop-blur-md"
+            ? "border-b border-gray-200/50 bg-white/85 opacity-100 shadow-sm backdrop-blur-md"
             : "border-b border-transparent bg-white/0 opacity-0"
         }`}
       />
@@ -61,10 +61,10 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors duration-500 ease-out ${
+                className={`relative group inline-block pb-1 text-sm font-medium transition-colors duration-300 after:absolute after:bottom-0 after:right-0 after:h-[2px] after:w-full after:scale-x-0 after:origin-right after:transition-transform after:duration-300 after:ease-out after:content-[''] group-hover:after:scale-x-100 group-hover:after:origin-left ${
                   scrolled
-                    ? "text-gray-700 hover:text-gray-900"
-                    : "text-white/90 hover:text-white"
+                    ? "text-gray-500 hover:text-gray-900 after:bg-emerald-600"
+                    : "text-white/90 hover:text-white after:bg-emerald-400"
                 }`}
               >
                 {link.label}
@@ -75,10 +75,10 @@ export default function Header() {
           {/* Desktop Contact Us */}
           <a
             href="#contact"
-            className={`hidden text-sm font-medium transition-colors duration-500 ease-out lg:block ${
+            className={`relative group hidden inline-block pb-1 text-sm font-medium transition-colors duration-300 after:absolute after:bottom-0 after:right-0 after:h-[2px] after:w-full after:scale-x-0 after:origin-right after:transition-transform after:duration-300 after:ease-out after:content-[''] group-hover:after:scale-x-100 group-hover:after:origin-left lg:block ${
               scrolled
-                ? "text-gray-700 hover:text-gray-900"
-                : "text-white/90 hover:text-white"
+                ? "text-gray-500 hover:text-gray-900 after:bg-emerald-600"
+                : "text-white/90 hover:text-white after:bg-emerald-400"
             }`}
           >
             Contact Us

@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import Header from "./header";
-import Button from "@/components/ui/button";
+import PillButton from "@/components/ui/pill-button";
 import { SplitText } from "@/components/ui/split-text";
 
 const BACKGROUND_IMAGE =
@@ -35,8 +35,8 @@ export default function Hero() {
 
       {/* Center: massive wordmark */}
       <div className="relative z-10 flex flex-1 items-center justify-center px-4 pt-24">
-        <h1 className="text-center font-syne text-5xl font-black leading-none tracking-tighter text-white sm:text-7xl md:text-8xl lg:text-[10rem] xl:text-[12rem]">
-          <SplitText text="TerraSave" />
+        <h1 className="text-center font-syne text-4xl font-black leading-none tracking-tighter whitespace-nowrap text-white sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem]">
+          <SplitText text="TerraSave" className="flex-nowrap" />
         </h1>
       </div>
 
@@ -58,9 +58,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           className="flex-shrink-0"
         >
-          <Button
-            variant="primary"
-            className="px-7 py-3 text-sm md:px-8 md:py-4 md:text-base"
+          <PillButton
+            className="text-sm md:text-base"
             onClick={() =>
               document
                 .getElementById("contact")
@@ -68,7 +67,7 @@ export default function Hero() {
             }
           >
             Get Started Now
-          </Button>
+          </PillButton>
         </motion.div>
       </div>
     </section>

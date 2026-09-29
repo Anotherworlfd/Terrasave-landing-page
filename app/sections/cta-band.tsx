@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import Button from "@/components/ui/button";
+import PillButton from "@/components/ui/pill-button";
 
 export default function CtaBand() {
   return (
@@ -44,9 +44,8 @@ export default function CtaBand() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="mt-8 flex justify-center"
           >
-            <Button
-              variant="primary"
-              className="px-8 py-4 text-sm md:text-base"
+            <PillButton
+              className="text-sm md:text-base"
               onClick={() =>
                 document
                   .getElementById("contact")
@@ -54,7 +53,7 @@ export default function CtaBand() {
               }
             >
               Get Started Now
-            </Button>
+            </PillButton>
           </motion.div>
         </div>
     </div>
