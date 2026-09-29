@@ -75,7 +75,7 @@ export default function Header() {
           {/* Desktop Contact Us */}
           <a
             href="#contact"
-            className={`relative group hidden inline-block pb-1 text-sm font-medium transition-colors duration-300 after:absolute after:bottom-0 after:right-0 after:h-[2px] after:w-full after:scale-x-0 after:origin-right after:transition-transform after:duration-300 after:ease-out after:content-[''] group-hover:after:scale-x-100 group-hover:after:origin-left lg:block ${
+            className={`relative group hidden lg:inline-block pb-1 text-sm font-medium transition-colors duration-300 after:absolute after:bottom-0 after:right-0 after:h-[2px] after:w-full after:scale-x-0 after:origin-right after:transition-transform after:duration-300 after:ease-out after:content-[''] group-hover:after:scale-x-100 group-hover:after:origin-left ${
               scrolled
                 ? "text-gray-500 hover:text-gray-900 after:bg-emerald-600"
                 : "text-white/90 hover:text-white after:bg-emerald-400"
