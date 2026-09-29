@@ -34,7 +34,7 @@ export default function Services() {
           <TextReveal className="text-xs font-medium uppercase tracking-widest text-gray-400">
             Key Benefits
           </TextReveal>
-          <TextReveal className="mt-3 max-w-sm font-heading text-3xl font-bold leading-snug text-gray-800 md:text-4xl" delay={0.08}>
+          <TextReveal className="mt-3 max-w-sm font-heading text-3xl font-normal leading-snug text-gray-800 md:text-4xl" delay={0.08}>
             Environmentally friendly clean energy solutions
           </TextReveal>
         </div>
@@ -74,7 +74,7 @@ export default function Services() {
                   }`}
                 />
                 <h3
-                  className={`mt-5 font-heading text-xl font-bold transition-colors duration-300 ${
+                  className={`mt-5 font-heading text-xl font-normal transition-colors duration-300 ${
                     isActive ? "text-white" : "text-gray-800"
                   }`}
                 >

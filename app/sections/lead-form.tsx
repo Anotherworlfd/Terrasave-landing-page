@@ -61,7 +61,7 @@ export default function LeadForm() {
                   />
                 </svg>
               </div>
-              <h2 className="mb-3 text-center text-2xl font-bold text-white md:text-3xl font-heading">
+              <h2 className="mb-3 text-center text-2xl font-normal text-white md:text-3xl font-heading">
                 Request Received
               </h2>
               <p className="text-center text-white/70">
@@ -100,7 +100,7 @@ export default function LeadForm() {
             className="lg:col-span-1 justify-self-start w-full max-w-lg"
           >
             <div className="rounded-3xl border border-white/20 bg-white/10 p-8 lg:p-10 shadow-2xl backdrop-blur-md">
-              <h2 className="mb-2 text-2xl font-bold text-white md:text-3xl font-heading">
+              <h2 className="mb-2 text-2xl font-normal text-white md:text-3xl font-heading">
                 Schedule Consultation
               </h2>
               <p className="mb-8 text-white/70">
@@ -184,12 +184,7 @@ export default function LeadForm() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="flex items-center lg:col-span-1 justify-self-end w-full max-w-xl"
           >
-            <h3
-              className="text-5xl font-black leading-[1.1] tracking-tight text-white lg:text-6xl font-heading lg:text-right"
-              style={{
-                fontFamily: "var(--font-heading)",
-              }}
-            >
+            <h3 className="text-5xl font-normal leading-[1.1] tracking-tight text-white lg:text-6xl font-heading lg:text-right">
               Empowering the future of enterprise with sustainable, intelligent
               energy solutions.
             </h3>

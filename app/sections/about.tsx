@@ -25,7 +25,7 @@ export default function About() {
 
           {/* Right column: heading, description, stats */}
           <div className="md:col-span-9">
-            <TextReveal className="font-heading text-3xl font-bold leading-snug text-gray-800 md:text-4xl" delay={0.08}>
+            <TextReveal className="font-heading text-3xl font-normal leading-snug text-gray-800 md:text-4xl" delay={0.08}>
               We believe that clean energy is the key to sustainability
             </TextReveal>
             <FadeUp delay={0.18} className="mt-5">

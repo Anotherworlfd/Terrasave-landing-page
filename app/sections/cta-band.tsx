@@ -20,7 +20,7 @@ export default function CtaBand() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="font-heading text-3xl font-bold leading-snug text-white md:text-5xl"
+          className="font-heading text-3xl font-normal leading-snug text-white md:text-5xl"
         >
           Join us in building a greener enterprise
         </motion.h2>

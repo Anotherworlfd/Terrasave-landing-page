@@ -33,7 +33,7 @@ export default function Testimonials() {
           <TextReveal className="text-xs font-medium uppercase tracking-widest text-gray-400">
             Testimonials
           </TextReveal>
-          <TextReveal className="mx-auto mt-3 max-w-lg font-heading text-3xl font-bold leading-snug text-gray-800 md:text-4xl" delay={0.08}>
+          <TextReveal className="mx-auto mt-3 max-w-lg font-heading text-3xl font-normal leading-snug text-gray-800 md:text-4xl" delay={0.08}>
             What enterprise teams say
           </TextReveal>
         </div>
