@@ -6,6 +6,9 @@ import Input from "@/components/ui/input";
 import Select from "@/components/ui/select";
 import Button from "@/components/ui/button";
 
+const BACKGROUND_IMAGE =
+  "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=2070&auto=format&fit=crop";
+
 export default function LeadForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -23,17 +26,29 @@ export default function LeadForm() {
 
   if (submitted) {
     return (
-      <section className="bg-emerald-50 py-16 md:py-24 px-4 md:px-8 lg:px-12">
-        <div className="max-w-2xl mx-auto text-center">
+      <section
+        id="contact"
+        className="relative overflow-hidden py-24 md:py-32"
+      >
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${BACKGROUND_IMAGE}')` }}
+          aria-hidden="true"
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
+
+        <div className="relative z-10 mx-auto max-w-2xl px-4 md:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
           >
-            <div className="bg-white rounded-2xl shadow-lg p-10 md:p-12">
+            <div className="rounded-3xl border border-white/20 bg-white/10 p-10 shadow-2xl backdrop-blur-md md:p-12">
               <div className="mb-4">
                 <svg
-                  className="w-16 h-16 text-emerald-600 mx-auto"
+                  className="mx-auto h-16 w-16 text-emerald-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -46,10 +61,10 @@ export default function LeadForm() {
                   />
                 </svg>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 font-heading">
+              <h2 className="mb-3 text-center text-2xl font-bold text-white md:text-3xl font-heading">
                 Request Received
               </h2>
-              <p className="text-gray-700">
+              <p className="text-center text-white/70">
                 Thank you. A sustainability specialist will contact you within
                 24 hours.
               </p>
@@ -63,81 +78,123 @@ export default function LeadForm() {
   return (
     <section
       id="contact"
-      className="bg-emerald-50 py-16 md:py-24 px-4 md:px-8 lg:px-12"
+      className="relative overflow-hidden py-24 md:py-32"
     >
-      <div className="max-w-xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 font-heading">
-              Schedule Consultation
-            </h2>
-            <p className="text-gray-600 mb-8">
-              Complete the form below and our team will reach out within 24
-              hours.
-            </p>
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url('${BACKGROUND_IMAGE}')` }}
+        aria-hidden="true"
+      />
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" aria-hidden="true" />
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-4">
-                <Input
-                  label="Full Name"
-                  name="name"
-                  type="text"
-                  required
-                  placeholder="John Doe"
-                />
-                <Input
-                  label="Company Name"
-                  name="company"
-                  type="text"
-                  required
-                  placeholder="Company Inc."
-                />
-                <Input
-                  label="Work Email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="john@company.com"
-                />
-                <Select
-                  label="Company Size"
-                  name="size"
-                  required
-                  options={[
-                    { value: "50-500", label: "50-500 employees" },
-                    { value: "500-1000", label: "500-1000 employees" },
-                    { value: "1000-5000", label: "1000-5000 employees" },
-                    { value: "5000+", label: "5000+ employees" },
-                  ]}
-                />
-                <Select
-                  label="Service of Interest"
-                  name="service"
-                  required
-                  options={[
-                    { value: "consulting", label: "Energy Consulting" },
-                    { value: "audit", label: "Energy Audit" },
-                    { value: "both", label: "Both services" },
-                  ]}
-                />
-              </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+          {/* Left column: Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-1"
+          >
+            <div className="rounded-3xl border border-white/20 bg-white/10 p-8 lg:p-10 shadow-2xl backdrop-blur-md">
+              <h2 className="mb-2 text-2xl font-bold text-white md:text-3xl font-heading">
+                Schedule Consultation
+              </h2>
+              <p className="mb-8 text-white/70">
+                Complete the form below and our team will reach out within 24
+                hours.
+              </p>
 
-              <Button
-                variant="primary"
-                type="submit"
-                className="w-full py-4 text-base font-medium"
-                disabled={loading}
-              >
-                {loading ? "Processing..." : "Submit Request"}
-              </Button>
-            </form>
-          </div>
-        </motion.div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-5">
+                  <Input
+                    label="Full Name"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="John Doe"
+                    className="bg-transparent border-white/30 text-white placeholder:text-gray-400 focus:border-emerald-400"
+                    labelClassName="text-gray-200"
+                  />
+                  <Input
+                    label="Company Name"
+                    name="company"
+                    type="text"
+                    required
+                    placeholder="Company Inc."
+                    className="bg-transparent border-white/30 text-white placeholder:text-gray-400 focus:border-emerald-400"
+                    labelClassName="text-gray-200"
+                  />
+                  <Input
+                    label="Work Email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="john@company.com"
+                    className="bg-transparent border-white/30 text-white placeholder:text-gray-400 focus:border-emerald-400"
+                    labelClassName="text-gray-200"
+                  />
+                  <Select
+                    label="Company Size"
+                    name="size"
+                    required
+                    options={[
+                      { value: "50-500", label: "50-500 employees" },
+                      { value: "500-1000", label: "500-1000 employees" },
+                      { value: "1000-5000", label: "1000-5000 employees" },
+                      { value: "5000+", label: "5000+ employees" },
+                    ]}
+                    className="bg-transparent border-white/30 text-white focus:border-emerald-400 [&>option]:text-gray-900"
+                    labelClassName="text-gray-200"
+                  />
+                  <Select
+                    label="Service of Interest"
+                    name="service"
+                    required
+                    options={[
+                      { value: "consulting", label: "Energy Consulting" },
+                      { value: "audit", label: "Energy Audit" },
+                      { value: "both", label: "Both services" },
+                    ]}
+                    className="bg-transparent border-white/30 text-white focus:border-emerald-400 [&>option]:text-gray-900"
+                    labelClassName="text-gray-200"
+                  />
+                </div>
+
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="w-full py-4 text-base font-medium"
+                  disabled={loading}
+                >
+                  {loading ? "Processing..." : "Submit Request"}
+                </Button>
+              </form>
+            </div>
+          </motion.div>
+
+          {/* Right column: Slogan */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="flex items-center lg:col-span-1"
+          >
+            <h3
+              className="text-5xl font-black leading-[1.1] tracking-tight text-white lg:text-6xl font-heading"
+              style={{
+                fontFamily: "var(--font-heading)",
+              }}
+            >
+              Empowering the future of enterprise with sustainable, intelligent
+              energy solutions.
+            </h3>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

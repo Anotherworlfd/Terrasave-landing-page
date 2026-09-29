@@ -5,17 +5,18 @@ import { SelectHTMLAttributes, forwardRef } from "react";
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label: string;
   options: { value: string; label: string }[];
+  labelClassName?: string;
 }
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, id, options, className = "", ...props }, ref) => {
+  ({ label, id, options, className = "", labelClassName = "", ...props }, ref) => {
     const selectId = id || label.toLowerCase().replace(/\s+/g, "-");
 
     return (
       <div className="flex flex-col gap-2">
         <label
           htmlFor={selectId}
-          className="text-sm font-medium text-gray-700"
+          className={`text-sm font-medium text-gray-700 ${labelClassName}`}
         >
           {label}
         </label>

@@ -4,17 +4,18 @@ import { InputHTMLAttributes, forwardRef } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  labelClassName?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, id, className = "", ...props }, ref) => {
+  ({ label, id, className = "", labelClassName = "", ...props }, ref) => {
     const inputId = id || label.toLowerCase().replace(/\s+/g, "-");
 
     return (
       <div className="flex flex-col gap-2">
         <label
           htmlFor={inputId}
-          className="text-sm font-medium text-gray-700"
+          className={`text-sm font-medium text-gray-700 ${labelClassName}`}
         >
           {label}
         </label>
