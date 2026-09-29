@@ -18,9 +18,7 @@ export default function Home() {
         <Services />
         <HowItWorks />
         <Capabilities />
-        <section id="why-us">
-          <WhyUs />
-        </section>
+        <WhyUs />
         <Testimonials />
         <CtaBand />
         <LeadForm />
