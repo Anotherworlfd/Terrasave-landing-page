@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "motion/react";
 import { TextReveal } from "@/components/ui/text-reveal";
+import { FadeUpStagger, FadeUpItem } from "@/components/ui/fade-up-stagger";
+import { ImageReveal } from "@/components/ui/image-reveal";
 
 const capabilities = [
   {
@@ -37,30 +38,23 @@ export default function Capabilities() {
           </TextReveal>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {capabilities.map((c, i) => (
-            <motion.article
-              key={c.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.6 }}
-              className="group"
-            >
-              <div className="overflow-hidden rounded-2xl">
+        <FadeUpStagger className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {capabilities.map((c) => (
+            <FadeUpItem key={c.title} className="group">
+              <ImageReveal className="rounded-2xl">
                 <img
                   src={c.image}
                   alt={c.alt}
                   className="h-[260px] w-full object-cover transition-transform duration-500 group-hover:scale-105 md:h-[300px]"
                   loading="lazy"
                 />
-              </div>
+              </ImageReveal>
               <h3 className="mt-5 font-heading text-lg font-bold text-gray-800">
                 {c.title}
               </h3>
-            </motion.article>
+            </FadeUpItem>
           ))}
-        </div>
+        </FadeUpStagger>
       </div>
     </section>
   );

@@ -1,28 +1,20 @@
 "use client";
 
 import { TrendDown, ShieldCheck, TreePalm, type Icon } from "@phosphor-icons/react";
-import { motion } from "motion/react";
 import { TextReveal } from "@/components/ui/text-reveal";
+import { FadeUpStagger, FadeUpItem } from "@/components/ui/fade-up-stagger";
 
 function ValuePropItem({
   icon: Icon,
   title,
   description,
-  index,
 }: {
   icon: Icon;
   title: string;
   description: string;
-  index: number;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.15, duration: 0.6 }}
-      className="text-left"
-    >
+    <FadeUpItem className="text-left">
       <Icon
         size={28}
         weight="bold"
@@ -32,7 +24,7 @@ function ValuePropItem({
         {title}
       </h3>
       <p className="text-gray-500 leading-relaxed">{description}</p>
-    </motion.div>
+    </FadeUpItem>
   );
 }
 
@@ -67,11 +59,11 @@ export default function WhyUs() {
           </TextReveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
-          {valueProps.map((prop, idx) => (
-            <ValuePropItem key={prop.title} {...prop} index={idx} />
+        <FadeUpStagger className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
+          {valueProps.map((prop) => (
+            <ValuePropItem key={prop.title} {...prop} />
           ))}
-        </div>
+        </FadeUpStagger>
       </div>
     </section>
   );

@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
 import Header from "./header";
 import PillButton from "@/components/ui/pill-button";
 import { SplitText } from "@/components/ui/split-text";
+import { FadeUpStagger, FadeUpItem } from "@/components/ui/fade-up-stagger";
 
 const BACKGROUND_IMAGE =
   "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?q=80&w=2500&auto=format&fit=crop";
@@ -41,23 +41,13 @@ export default function Hero() {
       </div>
 
       {/* Bottom row: paragraph left, CTA right */}
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-10 md:flex-row md:items-end md:justify-between md:px-8 md:pb-14 lg:px-12 lg:pb-16">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-md text-base leading-relaxed text-white md:text-lg"
-        >
+      <FadeUpStagger className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-10 md:flex-row md:items-end md:justify-between md:px-8 md:pb-14 lg:px-12 lg:pb-16">
+        <FadeUpItem className="max-w-md text-base leading-relaxed text-white md:text-lg">
           Commercial green energy consulting and B2B energy audits that cut
           costs and keep enterprises ahead of regulation.
-        </motion.p>
+        </FadeUpItem>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex-shrink-0"
-        >
+        <FadeUpItem className="flex-shrink-0">
           <PillButton
             className="text-sm md:text-base"
             onClick={() =>
@@ -68,8 +58,8 @@ export default function Hero() {
           >
             Get Started Now
           </PillButton>
-        </motion.div>
-      </div>
+        </FadeUpItem>
+      </FadeUpStagger>
     </section>
   );
 }

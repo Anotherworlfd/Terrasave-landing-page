@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
 import { TextReveal } from "@/components/ui/text-reveal";
+import { FadeUpStagger, FadeUpItem } from "@/components/ui/fade-up-stagger";
 
 const steps = [
   {
@@ -49,14 +49,10 @@ export default function HowItWorks() {
           </TextReveal>
         </div>
 
-        <div className="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-3">
-          {steps.map((step, i) => (
-            <motion.div
+        <FadeUpStagger className="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-3">
+          {steps.map((step) => (
+            <FadeUpItem
               key={step.num}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.6 }}
               className="border-t border-gray-200 py-8 md:py-10"
             >
               <span className="font-heading text-xs font-normal tracking-widest text-emerald-600">
@@ -68,9 +64,9 @@ export default function HowItWorks() {
               <p className="mt-2 text-sm leading-relaxed text-gray-500">
                 {step.body}
               </p>
-            </motion.div>
+            </FadeUpItem>
           ))}
-        </div>
+        </FadeUpStagger>
       </div>
     </section>
   );

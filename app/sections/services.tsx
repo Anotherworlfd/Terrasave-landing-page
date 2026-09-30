@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "motion/react";
 import { CheckCircle } from "@phosphor-icons/react";
 import { TextReveal } from "@/components/ui/text-reveal";
+import { FadeUpStagger, FadeUpItem } from "@/components/ui/fade-up-stagger";
 
 const services = [
   {
@@ -39,7 +39,7 @@ export default function Services() {
           </TextReveal>
         </div>
 
-        <div
+        <FadeUpStagger
           className="grid grid-cols-1 gap-6 md:grid-cols-2"
           onMouseLeave={() => setActiveIndex(null)}
         >
@@ -47,16 +47,12 @@ export default function Services() {
             const isActive = activeIndex === i;
 
             return (
-              <motion.button
+              <FadeUpItem
                 key={s.title}
                 type="button"
                 onMouseEnter={() => setActiveIndex(i)}
                 onFocus={() => setActiveIndex(i)}
                 onClick={() => setActiveIndex(i)}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
                 whileHover={{ y: -6 }}
                 whileTap={{ scale: 0.98 }}
                 aria-pressed={isActive}
@@ -87,10 +83,10 @@ export default function Services() {
                 >
                   {s.body}
                 </p>
-              </motion.button>
+              </FadeUpItem>
             );
           })}
-        </div>
+        </FadeUpStagger>
       </div>
     </section>
   );

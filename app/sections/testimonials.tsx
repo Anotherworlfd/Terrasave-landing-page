@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "motion/react";
 import { Quotes } from "@phosphor-icons/react";
 import { TextReveal } from "@/components/ui/text-reveal";
+import { FadeUpStagger, FadeUpItem } from "@/components/ui/fade-up-stagger";
 
 const testimonials = [
   {
@@ -38,14 +38,10 @@ export default function Testimonials() {
           </TextReveal>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {testimonials.map((t, i) => (
-            <motion.figure
+        <FadeUpStagger className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {testimonials.map((t) => (
+            <FadeUpItem
               key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.6 }}
               className="flex flex-col rounded-2xl bg-white p-8"
             >
               <Quotes size={24} weight="fill" className="text-emerald-600" />
@@ -56,9 +52,9 @@ export default function Testimonials() {
                 <p className="text-sm font-semibold text-gray-800">{t.name}</p>
                 <p className="text-xs text-gray-500">{t.role}</p>
               </figcaption>
-            </motion.figure>
+            </FadeUpItem>
           ))}
-        </div>
+        </FadeUpStagger>
       </div>
     </section>
   );

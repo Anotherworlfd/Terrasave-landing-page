@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { Marquee } from "@/components/ui/marquee";
 
 const LogoMarks = [
   { name: "Apex Energy", initials: "AE" },
@@ -22,13 +23,14 @@ function MonogramMark({
       height="80"
       viewBox="0 0 80 80"
       className="w-16 h-16 md:w-20 md:h-20"
+      role="img"
       aria-label={name}
     >
       <circle
         cx="40"
         cy="40"
         r="38"
-        fill="none"
+        fill="mask-gradient"
         stroke="#9CA3AF"
         strokeWidth="1"
       />
@@ -60,19 +62,13 @@ export default function LogoMarquee() {
           Trusted by Industry Leaders
         </motion.p>
 
-        <div className="flex justify-center items-center gap-10 md:gap-16 flex-wrap">
-          {LogoMarks.map((logo, idx) => (
-            <motion.div
-              key={logo.name}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.6 }}
-            >
+        <Marquee duration={20} className="flex items-center">
+          {LogoMarks.map((logo) => (
+            <div key={logo.name} className="mx-8 flex-shrink-0 md:mx-12">
               <MonogramMark initials={logo.initials} name={logo.name} />
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </Marquee>
       </div>
     </section>
   );
