@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, FormEvent } from "react";
-import { motion } from "motion/react";
+import { useRef, useState, FormEvent } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import Input from "@/components/ui/input";
 import Select from "@/components/ui/select";
 import Button from "@/components/ui/button";
@@ -13,6 +13,46 @@ const BACKGROUND_IMAGE =
 export default function LeadForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const cards = section.querySelectorAll(".lead-reveal");
+        cards.forEach((card, i) => {
+          gsap.fromTo(
+            card,
+            { autoAlpha: 0, y: 40 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.9,
+              delay: i * 0.12,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 75%",
+                once: true,
+              },
+            }
+          );
+        });
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(section.querySelectorAll(".lead-reveal"), {
+          autoAlpha: 1,
+          y: 0,
+        });
+      });
+    },
+    { scope: sectionRef, dependencies: [submitted] }
+  );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,6 +68,7 @@ export default function LeadForm() {
   if (submitted) {
     return (
       <section
+        ref={sectionRef}
         id="contact"
         className="relative overflow-hidden py-24 md:py-32"
       >
@@ -41,11 +82,7 @@ export default function LeadForm() {
         <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-2xl px-4 md:px-8 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4 }}
-          >
+          <div className="lead-reveal">
             <div className="rounded-3xl border border-white/20 bg-white/10 p-10 shadow-2xl backdrop-blur-md md:p-12">
               <div className="mb-4">
                 <svg
@@ -62,7 +99,7 @@ export default function LeadForm() {
                   />
                 </svg>
               </div>
-              <h2 className="mb-3 text-center text-2xl font-normal text-white md:text-3xl font-heading">
+              <h2 className="mb-3 text-center font-heading text-2xl font-normal text-white md:text-3xl">
                 Request Received
               </h2>
               <p className="text-center text-white/70">
@@ -70,7 +107,7 @@ export default function LeadForm() {
                 24 hours.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     );
@@ -78,6 +115,7 @@ export default function LeadForm() {
 
   return (
     <section
+      ref={sectionRef}
       id="contact"
       className="relative overflow-hidden py-24 md:py-32"
     >
@@ -88,20 +126,17 @@ export default function LeadForm() {
         aria-hidden="true"
       />
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/50" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/50"
+        aria-hidden="true"
+      />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
+        <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-32">
           {/* Left column: Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-1 justify-self-start w-full max-w-lg"
-          >
-            <div className="rounded-3xl border border-white/20 bg-white/10 p-8 lg:p-10 shadow-2xl backdrop-blur-md">
-              <h2 className="mb-2 text-2xl font-normal text-white md:text-3xl font-heading">
+          <div className="lead-reveal w-full max-w-lg justify-self-start lg:col-span-1">
+            <div className="rounded-3xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur-md lg:p-10">
+              <h2 className="mb-2 font-heading text-2xl font-normal text-white md:text-3xl">
                 Schedule Consultation
               </h2>
               <p className="mb-8 text-white/70">
@@ -117,7 +152,7 @@ export default function LeadForm() {
                     type="text"
                     required
                     placeholder="John Doe"
-                    className="bg-transparent border-white/30 text-white placeholder:text-white/60 focus:border-emerald-400"
+                    className="border-white/30 bg-transparent text-white placeholder:text-white/60 focus:border-emerald-400"
                     labelClassName="text-white"
                   />
                   <Input
@@ -126,7 +161,7 @@ export default function LeadForm() {
                     type="text"
                     required
                     placeholder="Company Inc."
-                    className="bg-transparent border-white/30 text-white placeholder:text-white/60 focus:border-emerald-400"
+                    className="border-white/30 bg-transparent text-white placeholder:text-white/60 focus:border-emerald-400"
                     labelClassName="text-white"
                   />
                   <Input
@@ -135,7 +170,7 @@ export default function LeadForm() {
                     type="email"
                     required
                     placeholder="john@company.com"
-                    className="bg-transparent border-white/30 text-white placeholder:text-white/60 focus:border-emerald-400"
+                    className="border-white/30 bg-transparent text-white placeholder:text-white/60 focus:border-emerald-400"
                     labelClassName="text-white"
                   />
                   <Select
@@ -148,7 +183,7 @@ export default function LeadForm() {
                       { value: "1000-5000", label: "1000-5000 employees" },
                       { value: "5000+", label: "5000+ employees" },
                     ]}
-                    className="bg-transparent border-white/30 text-white focus:border-emerald-400 [&>option]:text-gray-900"
+                    className="border-white/30 bg-transparent text-white focus:border-emerald-400 [&>option]:text-gray-900"
                     labelClassName="text-white"
                   />
                   <Select
@@ -160,7 +195,7 @@ export default function LeadForm() {
                       { value: "audit", label: "Energy Audit" },
                       { value: "both", label: "Both services" },
                     ]}
-                    className="bg-transparent border-white/30 text-white focus:border-emerald-400 [&>option]:text-gray-900"
+                    className="border-white/30 bg-transparent text-white focus:border-emerald-400 [&>option]:text-gray-900"
                     labelClassName="text-white"
                   />
                 </div>
@@ -177,21 +212,15 @@ export default function LeadForm() {
                 </Button>
               </form>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right column: Slogan */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="flex items-center lg:col-span-1 justify-self-end w-full max-w-xl"
-          >
-            <h3 className="text-5xl font-normal leading-[1.1] tracking-tight text-white lg:text-6xl font-heading lg:text-right">
+          <div className="lead-reveal flex w-full max-w-xl items-center justify-self-end lg:col-span-1">
+            <h3 className="font-heading text-5xl font-normal leading-[1.1] tracking-tight text-white lg:text-right lg:text-6xl">
               Empowering the future of enterprise with sustainable, intelligent
               energy solutions.
             </h3>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

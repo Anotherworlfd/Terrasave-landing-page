@@ -1,8 +1,7 @@
 "use client";
 
 import { Quotes } from "@phosphor-icons/react";
-import { TextReveal } from "@/components/ui/text-reveal";
-import { FadeUpStagger, FadeUpItem } from "@/components/ui/fade-up-stagger";
+import { ScrollReveal, StaggerReveal } from "@/components/scroll-reveal";
 
 const testimonials = [
   {
@@ -30,17 +29,26 @@ export default function Testimonials() {
     <section className="bg-gray-50 py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
         <div className="mb-12 text-center">
-          <TextReveal className="text-xs font-medium uppercase tracking-widest text-gray-400">
+          <ScrollReveal className="text-xs font-medium uppercase tracking-widest text-gray-400" y={16}>
             Testimonials
-          </TextReveal>
-          <TextReveal className="mx-auto mt-3 max-w-lg font-heading text-3xl font-normal leading-snug text-gray-800 md:text-4xl" delay={0.08}>
+          </ScrollReveal>
+          <ScrollReveal
+            className="mx-auto mt-3 max-w-lg font-heading text-3xl font-normal leading-snug text-gray-800 md:text-4xl"
+            y={24}
+            delay={0.08}
+          >
             What enterprise teams say
-          </TextReveal>
+          </ScrollReveal>
         </div>
 
-        <FadeUpStagger className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <StaggerReveal
+          className="grid grid-cols-1 gap-6 md:grid-cols-3"
+          y={40}
+          stagger={0.14}
+          start="top 80%"
+        >
           {testimonials.map((t) => (
-            <FadeUpItem
+            <div
               key={t.name}
               className="flex flex-col rounded-2xl bg-white p-8"
             >
@@ -52,9 +60,9 @@ export default function Testimonials() {
                 <p className="text-sm font-semibold text-gray-800">{t.name}</p>
                 <p className="text-xs text-gray-500">{t.role}</p>
               </figcaption>
-            </FadeUpItem>
+            </div>
           ))}
-        </FadeUpStagger>
+        </StaggerReveal>
       </div>
     </section>
   );

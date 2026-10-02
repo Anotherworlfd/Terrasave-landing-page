@@ -1,5 +1,6 @@
 import Hero from "./sections/hero";
 import About from "./sections/about";
+import LogoMarquee from "./sections/logo-marquee";
 import Services from "./sections/services";
 import HowItWorks from "./sections/how-it-works";
 import Capabilities from "./sections/capabilities";
@@ -15,6 +16,7 @@ export default function Home() {
       <main id="top" className="overflow-x-hidden">
         <Hero />
         <About />
+        <LogoMarquee />
         <Services />
         <HowItWorks />
         <Capabilities />

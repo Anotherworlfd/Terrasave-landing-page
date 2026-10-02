@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import "./globals.css";
 
 const syne = Syne({
@@ -63,7 +64,11 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body>{children}</body>
+      <body>
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
+      </body>
     </html>
   );
 }

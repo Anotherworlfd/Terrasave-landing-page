@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence } from "motion/react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { List, X } from "@phosphor-icons/react";
 
 const centerLinks = [
@@ -17,6 +18,9 @@ const mobileLinks = [...centerLinks, { label: "Contact Us", href: "#contact" }];
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
+  const scrimRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -25,24 +29,54 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useGSAP(
+    () => {
+      const bg = bgRef.current;
+      const scrim = scrimRef.current;
+      if (!bg || !scrim) return;
+
+      if (scrolled) {
+        gsap.to(bg, {
+          autoAlpha: 1,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+        gsap.to(scrim, {
+          autoAlpha: 0,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      } else {
+        gsap.to(bg, {
+          autoAlpha: 0,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+        gsap.to(scrim, {
+          autoAlpha: 1,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      }
+    },
+    { dependencies: [scrolled] }
+  );
+
   return (
-    <header className="fixed left-0 top-0 z-50 w-full">
+    <header ref={headerRef} className="fixed left-0 top-0 z-50 w-full">
       {/* Fading background layer: transparent over the hero, frosted glass once scrolled */}
       <div
+        ref={bgRef}
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 -z-10 transition-all duration-500 ease-out ${
-          scrolled
-            ? "border-b border-gray-200/50 bg-white/85 opacity-100 shadow-sm backdrop-blur-md"
-            : "border-b border-transparent bg-white/0 opacity-0"
-        }`}
+        className="pointer-events-none absolute inset-0 -z-10 border-b border-gray-200/50 bg-white/85 opacity-0 shadow-sm backdrop-blur-md"
       />
       {/* Top gradient scrim keeps white text legible before the glass fades in */}
       <div
+        ref={scrimRef}
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b from-black/45 via-black/25 to-transparent transition-opacity duration-500 ease-out ${
-          scrolled ? "opacity-0" : "opacity-100"
-        }`}
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b from-black/45 via-black/25 to-transparent"
       />
+
       <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
         <nav className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
@@ -102,11 +136,7 @@ export default function Header() {
       {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          <div
             className="border-t border-white/10 bg-black/70 backdrop-blur-md lg:hidden"
           >
             <div className="mx-auto max-w-7xl space-y-1 px-4 py-6">
@@ -121,7 +151,7 @@ export default function Header() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </header>

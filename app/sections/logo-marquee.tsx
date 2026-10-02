@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { Marquee } from "@/components/ui/marquee";
 
 const LogoMarks = [
@@ -22,7 +23,7 @@ function MonogramMark({
       width="80"
       height="80"
       viewBox="0 0 80 80"
-      className="w-16 h-16 md:w-20 md:h-20"
+      className="h-16 w-16 md:h-20 md:w-20"
       role="img"
       aria-label={name}
     >
@@ -50,17 +51,49 @@ function MonogramMark({
 }
 
 export default function LogoMarquee() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.fromTo(
+          section.querySelector(".marquee-label"),
+          { autoAlpha: 0, y: 16 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(section.querySelector(".marquee-label"), {
+          autoAlpha: 1,
+          y: 0,
+        });
+      });
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section className="bg-white py-16 md:py-20">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-xs uppercase tracking-widest text-gray-400 mb-10 text-center font-medium"
-        >
+    <section ref={sectionRef} className="bg-white py-16 md:py-20">
+      <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
+        <p className="marquee-label mb-10 text-center text-xs font-medium uppercase tracking-widest text-gray-400">
           Trusted by Industry Leaders
-        </motion.p>
+        </p>
 
         <Marquee duration={20} className="flex items-center">
           {LogoMarks.map((logo) => (

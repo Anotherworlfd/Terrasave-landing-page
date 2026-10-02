@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle } from "@phosphor-icons/react";
-import { TextReveal } from "@/components/ui/text-reveal";
-import { FadeUpStagger, FadeUpItem } from "@/components/ui/fade-up-stagger";
+import { ScrollReveal, StaggerReveal } from "@/components/scroll-reveal";
 
 const services = [
   {
@@ -31,30 +30,34 @@ export default function Services() {
     <section id="services" className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-12">
         <div className="mb-12">
-          <TextReveal className="text-xs font-medium uppercase tracking-widest text-gray-400">
+          <ScrollReveal className="text-xs font-medium uppercase tracking-widest text-gray-400" y={16}>
             Key Benefits
-          </TextReveal>
-          <TextReveal className="mt-3 max-w-sm font-heading text-3xl font-normal leading-snug text-gray-800 md:text-4xl" delay={0.08}>
+          </ScrollReveal>
+          <ScrollReveal
+            className="mt-3 max-w-sm font-heading text-3xl font-normal leading-snug text-gray-800 md:text-4xl"
+            y={24}
+            delay={0.08}
+          >
             Environmentally friendly clean energy solutions
-          </TextReveal>
+          </ScrollReveal>
         </div>
 
-        <FadeUpStagger
+        <StaggerReveal
           className="grid grid-cols-1 gap-6 md:grid-cols-2"
-          onMouseLeave={() => setActiveIndex(null)}
+          y={40}
+          stagger={0.12}
+          start="top 80%"
         >
           {services.map((s, i) => {
             const isActive = activeIndex === i;
 
             return (
-              <FadeUpItem
+              <button
                 key={s.title}
                 type="button"
                 onMouseEnter={() => setActiveIndex(i)}
                 onFocus={() => setActiveIndex(i)}
                 onClick={() => setActiveIndex(i)}
-                whileHover={{ y: -6 }}
-                whileTap={{ scale: 0.98 }}
                 aria-pressed={isActive}
                 className={`group flex h-full cursor-pointer flex-col items-start rounded-2xl border p-8 text-left transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 md:p-10 ${
                   isActive
@@ -83,10 +86,10 @@ export default function Services() {
                 >
                   {s.body}
                 </p>
-              </FadeUpItem>
+              </button>
             );
           })}
-        </FadeUpStagger>
+        </StaggerReveal>
       </div>
     </section>
   );

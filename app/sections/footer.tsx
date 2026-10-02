@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import {
   LinkedinLogo,
   TwitterLogo,
@@ -55,11 +56,53 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const footer = footerRef.current;
+      if (!footer) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const columns = footer.querySelectorAll(".footer-col");
+        gsap.fromTo(
+          columns,
+          { autoAlpha: 0, y: 24 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.08,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: footer,
+              start: "top 90%",
+              once: true,
+            },
+          }
+        );
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(footer.querySelectorAll(".footer-col"), {
+          autoAlpha: 1,
+          y: 0,
+        });
+      });
+    },
+    { scope: footerRef }
+  );
+
   return (
-    <footer className="bg-gray-950 px-4 py-12 text-white md:px-8 md:py-16 lg:px-12">
+    <footer
+      ref={footerRef}
+      className="bg-gray-950 px-4 py-12 text-white md:px-8 md:py-16 lg:px-12"
+    >
       <div className="mx-auto max-w-7xl">
         {/* Top: Logo + Social */}
-        <div className="mb-12 flex flex-col justify-between gap-8 md:flex-row md:items-start">
+        <div className="footer-col mb-12 flex flex-col justify-between gap-8 md:flex-row md:items-start">
           <div>
             <h2 className="font-heading text-3xl font-normal tracking-tight md:text-4xl">
               TerraSave
@@ -89,7 +132,7 @@ export default function Footer() {
         {/* Middle: Link columns */}
         <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-12 md:grid-cols-4">
           {footerLinks.map((col) => (
-            <div key={col.title}>
+            <div key={col.title} className="footer-col">
               <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-400">
                 {col.title}
               </h3>
@@ -110,7 +153,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom: Copyright */}
-        <div className="mt-12 border-t border-white/10 pt-8 text-center">
+        <div className="footer-col mt-12 border-t border-white/10 pt-8 text-center">
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} TerraSave. All rights reserved.
           </p>
